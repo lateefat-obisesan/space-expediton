@@ -18,7 +18,8 @@
             StorageLocation = storageLocation;
             Description = description;
         }
-
+        /* Object class already has ToString().
+           I override it so Artifact prints custom information instead of class name.*/
         public override string ToString()
         {
             return $"Decoded Name: {DecodedName}\n" + $"Encoded Name: {EncodedName}\n" + $"Planet: {Planet}\n" + $"Discovery Date: {DiscoveryDate}\n" + $"Storage Location: {StorageLocation}\n" + $"Description: {Description}\n";
