@@ -21,7 +21,7 @@
 
         public override string ToString()
         {
-            return $"Decoded Name: {DecodedName}" + $"Encoded Name: {EncodedName}" + $"Planet: {Planet}" + $"Discovery Date: {DiscoveryDate}" + $"Storage Location: {StorageLocation}" + $"Description: {Description}";
+            return $"Decoded Name: {DecodedName}\n" + $"Encoded Name: {EncodedName}\n" + $"Planet: {Planet}\n" + $"Discovery Date: {DiscoveryDate}\n" + $"Storage Location: {StorageLocation}\n" + $"Description: {Description}\n";
         }
     }
 }

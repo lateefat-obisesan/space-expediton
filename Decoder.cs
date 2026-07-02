@@ -1,6 +1,6 @@
 ﻿namespace Space_Expedition
 {
-    internal class Decoder
+    class Decoder
     {
     }
 }
