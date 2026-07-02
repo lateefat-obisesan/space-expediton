@@ -18,6 +18,7 @@
             StorageLocation = storageLocation;
             Description = description;
         }
+
         public override string ToString()
         {
             return $"Decoded Name: {DecodedName}" + $"Encoded Name: {EncodedName}" + $"Planet: {Planet}" + $"Discovery Date: {DiscoveryDate}" + $"Storage Location: {StorageLocation}" + $"Description: {Description}";
