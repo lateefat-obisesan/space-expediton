@@ -54,11 +54,20 @@
 
             return letter;
         }
-        // Reverse alphabet mapping: A->Z & B->Y
+        //MirrorLetter because when the level reaches 1, mirror the character.
+        // Mirror the letter when the recursion reaches the base case.
+        // Mirror the alphabet (A becomes Z, B becomes Y)
         private static char MirrorLetter(char letter)
         {
-            int position = letter - 'A';
-            return (char)('Z' - position);
+            for (int i = 0; i < originalLetters.Length; i++)
+            {
+                if (originalLetters[i] == letter)
+                {
+                    // Return the letter from the opposite end of the alphabet.
+                    return originalLetters[originalLetters.Length - 1 - i];
+                }
+            }
+            return letter;
         }
     }
 }
