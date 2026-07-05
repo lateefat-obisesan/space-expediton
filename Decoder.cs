@@ -12,6 +12,26 @@
        {
             'H','Z','A','U','Y','E','K','G','O','T','I','R','J',
             'V','W','N','M','F','Q','S','D','B','X','L','C','P'
-        };
+       };
+        public static string DecodeName(string encodedName)
+        {
+            string[] parts = encodedName.Split('|');
+            string decodedName = " ";
+            for (int i = 0; i < parts.Length; i++)
+            {
+                string token = parts[i].Trim();
+
+                if (token.Length < 2)
+                {
+                    continue;
+                }
+
+                char letter = token[0];
+                int level = int.Parse(token.Substring(1));
+
+                decodedName += DecodeToken(letter, level);
+            }
+            return decodedName;
+        }
     }
 }
