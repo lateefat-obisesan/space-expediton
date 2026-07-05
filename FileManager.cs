@@ -28,8 +28,32 @@
                         Console.WriteLine("Invalid line skipped.");
                         continue;
                     }
+                    Artifact artifact = new Artifact();
+
+                    artifact.EncodedName = parts[0].Trim();
+                    artifact.DecodedName = Decoder.DecodeName(artifact.EncodedName);
+                    artifact.Planet = parts[1].Trim();
+                    artifact.DiscoveryDate = parts[2].Trim();
+                    artifact.StorageLocation = parts[3].Trim();
+                    artifact.Description = parts[4].Trim();
+
+                    Artifact[] newArray = new Artifact[artifacts.Length + 1];
+
+                    for (int i = 0; i < artifacts.Length; i++)
+                    {
+                        newArray[i] = artifacts[i];
+                    }
+
+                    newArray[artifacts.Length] = artifact;
+
+                    artifacts = newArray;
                 }
-            }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error reading file: " + ex.Message);
+                    }
+
+                    return artifacts;
         }
     }
 }
