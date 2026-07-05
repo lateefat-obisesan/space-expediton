@@ -54,5 +54,11 @@
 
             return letter;
         }
+        // Reverse alphabet mapping: A->Z & B->Y
+        private static char MirrorLetter(char letter)
+        {
+            int position = letter - 'A';
+            return (char)('Z' - position);
+        }
     }
 }
