@@ -33,5 +33,26 @@
             }
             return decodedName;
         }
+        private static char DecodeToken(char letter, int level)
+        {
+            if (level == 1)
+            {
+                return MirrorLetter(letter);
+            }
+            char mappedLetter = GetMappedLetter(letter);
+            return DecodeToken(mappedLetter, level - 1);
+        }
+        private static char GetMappedLetter(char letter)
+        {
+            for (int i = 0; i < originalLetters.Length; i++)
+            {
+                if (originalLetters[i] == letter)
+                {
+                    return mappedLetters[i];
+                }
+            }
+
+            return letter;
+        }
     }
 }
