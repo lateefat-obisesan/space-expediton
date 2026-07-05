@@ -7,17 +7,17 @@
             Artifact[] artifacts = new Artifact[0];
             try
             {
-                if(!File.Exists(fileName))
+                if (!File.Exists(fileName))
                 {
                     Console.WriteLine("File not found.");
                     return artifacts;
                 }
                 string[] lines = File.ReadAllLines(fileName);
 
-                foreach(string line in lines)
+                foreach (string line in lines)
                 {
                     //to skip empty lines
-                    if(string.IsNullOrWhiteSpace(line))
+                    if (string.IsNullOrWhiteSpace(line))
                     {
                         continue;
                     }
@@ -47,13 +47,33 @@
                     newArray[artifacts.Length] = artifact;
 
                     artifacts = newArray;
-                }
+                
                     catch (Exception ex)
                     {
                         Console.WriteLine("Error reading file: " + ex.Message);
                     }
-
                     return artifacts;
+            }
+        public static void SaveArtifacts(string fileName, Artifact[] artifacts)
+        {
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(fileName))
+                {
+                    foreach (Artifact artifact in artifacts)
+                    {
+                        writer.WriteLine(
+                            artifact.EncodedName + "," +
+                            artifact.Planet + "," +
+                            artifact.DiscoveryDate + "," +
+                            artifact.StorageLocation + "," +
+                            artifact.Description);
+                    }
+                }
+                 catch (Exception ex)
+            {
+                Console.WriteLine("Error saving file: " + ex.Message);
+            }
+
         }
-    }
 }
