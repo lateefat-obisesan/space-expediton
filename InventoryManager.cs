@@ -24,7 +24,20 @@
             while(low <= high)
             {
                 int mid = low + (high - low) / 2;
-                int compareResult = string.Comapare(artifacts[mid].DecodedName, targetDecodedName)
+                int compareResult = string.Comapare(artifacts[mid].DecodedName, targetDecodedName);
+                if (compareResult == 0)
+                {
+                    return mid; // the artifact found, then returns its index
+                }
+                else if (compareResult < 0)
+                {
+                    low = mid + 1; // Search the right half
+                }
+                else
+                {
+                    high = mid - 1; // Search the left half
+                }
+                return -1;
             }
         }
     }
