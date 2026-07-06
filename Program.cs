@@ -26,7 +26,32 @@ namespace space_expedition
                 Console.WriteLine("Select an option (1-3): ");
 
                 string choice = Console.ReadLine();
-                Console.WriteLine()
+                Console.WriteLine();
+
+                switch (choice)
+                {
+                    case "1":
+                        AddNewArtifactOption(ref inventory);
+                        break;
+
+                    case "2":
+                        ViewInventoryOption(inventory);
+                        break;
+
+                    case "3":
+                        // Save the updated inventory on user exit
+                        Console.WriteLine("Saving inventory updates to summary log...");
+                        FileManager.SaveArtifacts(outputFile, inventory);
+                        Console.WriteLine("Save complete. Goodbye, Explorer!");
+                        running = false;
+                        break;
+
+                    default:
+                        Console.WriteLine("Invalid option. Please choose 1, 2, or 3.");
+                        break;
+                }
+
+                Console.WriteLine(); // Extra space between loops
             }
         }
     }
