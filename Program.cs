@@ -18,7 +18,15 @@ namespace space_expedition
             bool running = true;
             while (running)
             {
-                Console.WriteLine();
+                Console.WriteLine("WELCOME TO");
+                Console.WriteLine("GALACTIC VAULT MENU");
+                Console.WriteLine("1. Add New Artifact Log");
+                Console.WriteLine("2. View Sorted Inventory");
+                Console.WriteLine("3. Save and Exit");
+                Console.WriteLine("Select an option (1-3): ");
+
+                string choice = Console.ReadLine();
+                Console.WriteLine()
             }
         }
     }
