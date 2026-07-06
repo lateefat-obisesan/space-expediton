@@ -89,5 +89,20 @@ namespace space_expedition
                 }
             }
         }
+        static void ViewInventoryOption(Artifact[] inventory)
+        {
+            if (inventory.Length == 0)
+            {
+                Console.WriteLine("The vault inventory is currently completely empty.");
+                return;
+            }
+
+            Console.WriteLine($" CURRENT SORTED INVENTORY ({inventory.Length} Items) ");
+            for (int i = 0; i < inventory.Length; i++)
+            {
+                Console.WriteLine($"[{i + 1}]");
+                Console.WriteLine(inventory[i].ToString());
+            }
+        }
     }
 }
