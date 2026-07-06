@@ -1,4 +1,6 @@
-﻿namespace Space_Expedition
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace Space_Expedition
 {
     class InventoryManager
     {
@@ -38,6 +40,26 @@
                     high = mid - 1; // Search the left half
                 }
                 return -1;
+            }
+            Public static Artifact[] InsertInOrder(Artifact[] oldArray, Artifact newArtifact)
+            {
+                Artifact[] newArray = new Artifact[oldArray.Length + 1];
+                int i = 0;
+
+                // Copy all elements smaller than the new artifact
+                while (i < oldArray.Length && string.Compare(oldArray[i].DecodedName, newArtifact.DecodedName) < 0)
+                {
+                    newArray[i] = oldArray[i];
+                    i++;
+                }
+                newArray[i] = newArtifact;
+                while (i < oldArray.Length)
+                {
+                    newArray[i + 1] = oldArray[i];
+                    i++;
+                }
+
+                return newArray;
             }
         }
     }
