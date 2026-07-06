@@ -1,4 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using System;
 
 namespace Space_Expedition
 {
@@ -6,11 +6,12 @@ namespace Space_Expedition
     {
         public static void SortInventory(Artifact[] artifacts)
         {
-            for(int i = 1; i < artifacts.Length; i++)
+            for (int i = 1; i < artifacts.Length; i++)
             {
                 Artifact key = artifacts[i];
                 int j = i - 1;
-                while (j >= 0 && string.Compare(artifacts[j]. DecodedName, key.DecodedName) > 0)
+
+                while (j >= 0 && string.Compare(artifacts[j].DecodedName, key.DecodedName) > 0)
                 {
                     artifacts[j + 1] = artifacts[j];
                     j--;
@@ -18,18 +19,20 @@ namespace Space_Expedition
                 artifacts[j + 1] = key;
             }
         }
-        public static int BinarySearch(Artifact[] arifacts, string targetDecodedName)
+
+        public static int BinarySearch(Artifact[] artifacts, string targetDecodedName)
         {
             int low = 0;
             int high = artifacts.Length - 1;
 
-            while(low <= high)
+            while (low <= high)
             {
                 int mid = low + (high - low) / 2;
-                int compareResult = string.Comapare(artifacts[mid].DecodedName, targetDecodedName);
+                int compareResult = string.Compare(artifacts[mid].DecodedName, targetDecodedName);
+
                 if (compareResult == 0)
                 {
-                    return mid; // the artifact found, then returns its index
+                    return mid; //the artifact found, returns to its index
                 }
                 else if (compareResult < 0)
                 {
@@ -39,28 +42,32 @@ namespace Space_Expedition
                 {
                     high = mid - 1; // Search the left half
                 }
-                return -1;
             }
-            Public static Artifact[] InsertInOrder(Artifact[] oldArray, Artifact newArtifact)
+
+            return -1;
+        }
+
+        public static Artifact[] InsertInOrder(Artifact[] oldArray, Artifact newArtifact)
+        {
+            Artifact[] newArray = new Artifact[oldArray.Length + 1];
+            int i = 0;
+
+            // Copys all elements smaller than the new artifact
+            while (i < oldArray.Length && string.Compare(oldArray[i].DecodedName, newArtifact.DecodedName) < 0)
             {
-                Artifact[] newArray = new Artifact[oldArray.Length + 1];
-                int i = 0;
-
-                // Copy all elements smaller than the new artifact
-                while (i < oldArray.Length && string.Compare(oldArray[i].DecodedName, newArtifact.DecodedName) < 0)
-                {
-                    newArray[i] = oldArray[i];
-                    i++;
-                }
-                newArray[i] = newArtifact;
-                while (i < oldArray.Length)
-                {
-                    newArray[i + 1] = oldArray[i];
-                    i++;
-                }
-
-                return newArray;
+                newArray[i] = oldArray[i];
+                i++;
             }
+
+            newArray[i] = newArtifact;
+
+            while (i < oldArray.Length)
+            {
+                newArray[i + 1] = oldArray[i];
+                i++;
+            }
+
+            return newArray;
         }
     }
 }
