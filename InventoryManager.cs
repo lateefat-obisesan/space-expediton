@@ -16,6 +16,16 @@
                 artifacts[j + 1] = key;
             }
         }
-        public 
+        public static int BinarySearch(Artifact[] arifacts, string targetDecodedName)
+        {
+            int low = 0;
+            int high = artifacts.Length - 1;
+
+            while(low <= high)
+            {
+                int mid = low + (high - low) / 2;
+                int compareResult = string.Comapare(artifacts[mid].DecodedName, targetDecodedName)
+            }
+        }
     }
 }
