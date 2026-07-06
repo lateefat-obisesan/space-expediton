@@ -54,5 +54,40 @@ namespace space_expedition
                 Console.WriteLine(); // Extra space between loops
             }
         }
+        static void AddNewArtifactOption(ref Artifact[] inventory)
+        {
+            Console.Write("Enter the exact name of the artifact file to read (e.g., log.txt): ");
+            string artifactFile = Console.ReadLine();
+
+            if (!File.Exists(artifactFile))
+            {
+                Console.WriteLine("Error: That artifact log file could not be found.");
+                return;
+            }
+
+            Artifact[] newRecords = FileManager.ReadArtifacts(artifactFile);
+
+            if (newRecords.Length == 0)
+            {
+                Console.WriteLine("Error: No valid artifact records found in that file.");
+                return;
+            }
+
+            foreach (Artifact newArtifact in newRecords)
+            {
+                // Binary Search to ensure duplicate entries aren't added
+                int foundIndex = InventoryManager.BinarySearch(inventory, newArtifact.DecodedName);
+
+                if (foundIndex != -1)
+                {
+                    Console.WriteLine($"Skipped: '{newArtifact.DecodedName}' already exists in the inventory registry.");
+                }
+                else
+                {
+                    inventory = InventoryManager.InsertInOrder(inventory, newArtifact);
+                    Console.WriteLine($"Success: Saved '{newArtifact.DecodedName}' into the vault catalog.");
+                }
+            }
+        }
     }
 }
